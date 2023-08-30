@@ -32,7 +32,7 @@ class Scanner:
 
 @timefunc
 def main():
-    ip = "localhost"
+    ip = "192.168.100.99"
     scanner = Scanner(ip)
     print(scanner.__repr__())
     scanner.scan(1, 100)

@@ -5,7 +5,7 @@ from utils import timefunc
 
 @timefunc
 def main():
-    ip = "localhost"
+    ip = "192.168.100.99"
     scanner = Scanner(ip)
     scanner.scan(1, 150)
     for port in scanner.open_ports:

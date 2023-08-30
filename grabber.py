@@ -19,6 +19,6 @@ class Grabber:
 
 
 if __name__ == "__main__":
-    grabber = Grabber("localhost", 23)
+    grabber = Grabber("192.168.100.99", 23)
     print(grabber.read())
     grabber.close()
