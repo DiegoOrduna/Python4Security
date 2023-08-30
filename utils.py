@@ -5,6 +5,6 @@ def timefunc(func):
         start = timer()
         results = func(*args, **kwargs)
         end = timer()
-        print(f"{func.__name__} took {end - start}")
+        print(f"{func.__name__} took {end - start} seconds")
         return results
     return inner
