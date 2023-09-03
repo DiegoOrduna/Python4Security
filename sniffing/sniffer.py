@@ -1,6 +1,6 @@
 import socket
 from capture import PCAPFile
-from nettypes import EthernetFrame, IPHeader, TCPSegment
+from nettypes import EthernetFrame, IPHeader, TCPSegment, UDPSegment
 
 def main():
     conn = socket.socket(socket.AF_PACKET, socket.SOCK_RAW, socket.ntohs(3))
@@ -8,15 +8,18 @@ def main():
     while True:
         raw_data, addr = conn.recvfrom(65535)
         ethframe = EthernetFrame(raw_data)
-        print(ethframe)
+        #print(ethframe)
         if ethframe.protocol == 8:
             ipheader = IPHeader(ethframe.leftover_data)
-            print(ipheader)
+            #print(ipheader)
             if ipheader.protocol == 6:
                 tcp = TCPSegment(ipheader.leftover_data)
-                print(tcp)
+                #print(tcp)
+            elif ipheader.protocol == 17:
+                udp = UDPSegment(ipheader.leftover_data)
+                print(udp)
 
-        print("**********************************************")
+        #print("**********************************************")
         #pcap.write(raw_data)
     #pcap.close()
 

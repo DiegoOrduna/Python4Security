@@ -55,7 +55,7 @@ class TCPSegment:
     
     def __str__(self):
         return f"""
-    TCP Header...
+    TCP Segment...
     * Source Port:          {self.src_port}
     * Destination Port:     {self.dest_port} 
     * Leftover Data:        {self.leftover_data}
@@ -66,3 +66,22 @@ class TCPSegment:
             return data.decode('utf-8')
         except Exception as e:
             return data
+        
+class UDPSegment:
+    length = 8
+    def __init__(self, data):
+        unpacked_data = unpack('!HHHH',data[0:self.length])
+        self.src_port = unpacked_data[0]
+        self.dest_port = unpacked_data[1]
+        self.length = unpacked_data[2]
+        self.checksum = unpacked_data[3]
+        self.leftover_data = data[self.length:]
+    
+    def __str__(self):
+        return f"""
+    UDP Segment...
+    * Source Port:          {self.src_port}
+    * Destination Port:     {self.dest_port} 
+    * Checksum:             {self.checksum}
+    * Data:                 {self.leftover_data}
+    """ 
