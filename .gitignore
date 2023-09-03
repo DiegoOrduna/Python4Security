@@ -1,3 +1,6 @@
 /.vscode
 /__pycache__
-packets.pcap
+/*/.vscode
+/*/__pycache__
+/*/packets.pcap
+/*/open_ports.txt
